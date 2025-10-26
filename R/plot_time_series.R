@@ -89,15 +89,60 @@ plot_time_series <- function(nitrate_data, sites = NULL, aggregation = "daily",
 
   # Create time series plot
   p <- ggplot2::ggplot(plot_data, ggplot2::aes(x = .data[[time_var]], y = .data[[y_var]], color = siteID)) +
-    ggplot2::geom_line(alpha = 0.7) +
+    ggplot2::geom_line(alpha = 0.8) +
     ggplot2::geom_point(size = 0.5, alpha = 0.5) +
     ggplot2::labs(
       title = title,
+      subtitle = paste("Aggregation:", tools::toTitleCase(aggregation)),
       x = "Date",
       y = "Nitrate Concentration (mg/L)",
-      color = "Site"
+      color = "Monitoring Site"
     ) +
-    ggplot2::theme_minimal()
+    ggplot2::theme_minimal(base_size = 13) +
+    ggplot2::theme(
+      plot.title = ggplot2::element_text(
+        face = "bold",
+        size = 16,
+        margin = ggplot2::margin(b = 10)
+      ),
+      plot.subtitle = ggplot2::element_text(
+        color = "gray40",
+        size = 12,
+        margin = ggplot2::margin(b = 15)
+      ),
+      axis.title = ggplot2::element_text(face = "bold", size = 12),
+      axis.text = ggplot2::element_text(size = 10),
+      legend.title = ggplot2::element_text(face = "bold", size = 11),
+      legend.text = ggplot2::element_text(size = 10),
+      legend.position = "bottom",
+      legend.box.background = ggplot2::element_rect(color = "gray80", fill = "white"),
+      legend.box.margin = ggplot2::margin(t = 5, r = 5, b = 5, l = 5),
+      panel.grid.major = ggplot2::element_line(color = "gray90", linewidth = 0.3),
+      panel.grid.minor = ggplot2::element_line(color = "gray95", linewidth = 0.2),
+      plot.background = ggplot2::element_rect(fill = "white", color = NA),
+      panel.background = ggplot2::element_rect(fill = "white", color = NA),
+      plot.margin = ggplot2::margin(15, 15, 15, 15)
+    ) +
+    ggplot2::scale_color_viridis_d(
+      name = "Monitoring Site",
+      option = "plasma",
+      end = 0.85,
+      guide = ggplot2::guide_legend(
+        nrow = 2,
+        byrow = TRUE,
+        title.position = "top",
+        title.hjust = 0.5
+      )
+    ) +
+    ggplot2::scale_x_date(
+      date_breaks = "1 year",
+      date_labels = "%Y",
+      expand = ggplot2::expansion(mult = 0.02)
+    ) +
+    ggplot2::scale_y_continuous(
+      expand = ggplot2::expansion(mult = 0.05),
+      labels = scales::label_number(accuracy = 0.1)
+    )
 
   # Add ribbon for variability if requested and available
   if (show_ribbon && exists("sd_var") && sd_var %in% names(plot_data)) {
@@ -106,8 +151,11 @@ plot_time_series <- function(nitrate_data, sites = NULL, aggregation = "daily",
         ymin = .data[[y_var]] - .data[[sd_var]],
         ymax = .data[[y_var]] + .data[[sd_var]],
         fill = siteID
-      ), alpha = 0.2, color = NA) +
-      ggplot2::labs(fill = "Site")
+      ), alpha = 0.2, color = NA, show.legend = FALSE) +
+      ggplot2::scale_fill_viridis_d(
+        option = "plasma",
+        end = 0.85
+      )
   }
 
   return(p)

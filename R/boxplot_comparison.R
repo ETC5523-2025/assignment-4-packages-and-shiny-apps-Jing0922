@@ -20,11 +20,15 @@
 #' boxplot_comparison(nitrate_clean,
 #'                      sites = c("LEWI", "OTHER"),
 #'                      log_transform = TRUE)
-boxplot_comparison <- function(nitrate_data, sites = NULL, log_transform = FALSE, title = NULL) {
 
-  # 动态检测数据格式
+boxplot_comparison <- function(nitrate_data,
+                               sites = NULL,
+                               log_transform = FALSE,
+                               title = NULL) {
+
+
   if ("surfWaterNitrateMean" %in% names(nitrate_data)) {
-    # 原始数据格式
+
     required_cols <- c("siteID", "surfWaterNitrateMean")
     missing_cols <- setdiff(required_cols, names(nitrate_data))
     if (length(missing_cols) > 0) {
@@ -34,32 +38,11 @@ boxplot_comparison <- function(nitrate_data, sites = NULL, log_transform = FALSE
     y_var <- "surfWaterNitrateMean"
     data_label <- "Nitrate Concentration"
 
-  } else if ("daily_mean" %in% names(nitrate_data)) {
-    # 日聚合数据
-    y_var <- "daily_mean"
-    data_label <- "Daily Mean Nitrate Concentration"
-
-  } else if ("monthly_mean" %in% names(nitrate_data)) {
-    # 月聚合数据
-    y_var <- "monthly_mean"
-    data_label <- "Monthly Mean Nitrate Concentration"
-
-  } else if ("yearly_mean" %in% names(nitrate_data)) {
-    # 年聚合数据
-    y_var <- "yearly_mean"
-    data_label <- "Yearly Mean Nitrate Concentration"
-
   } else {
-    # 尝试找到包含"mean"的列
-    mean_cols <- grep("mean", names(nitrate_data), value = TRUE, ignore.case = TRUE)
-    if (length(mean_cols) > 0) {
-      y_var <- mean_cols[1]
-      data_label <- "Nitrate Concentration"
-    } else {
-      stop("Cannot identify nitrate concentration column. Available columns: ",
-           paste(names(nitrate_data), collapse = ", "))
-    }
+    stop("Required column 'surfWaterNitrateMean' not found. Available columns: ",
+         paste(names(nitrate_data), collapse = ", "))
   }
+
 
   # Filter by sites if specified
   if (!is.null(sites)) {
@@ -67,9 +50,11 @@ boxplot_comparison <- function(nitrate_data, sites = NULL, log_transform = FALSE
       dplyr::filter(siteID %in% sites)
   }
 
+
   # Prepare data
   nitrate_boxplot_data <- nitrate_data |>
     dplyr::filter(!is.na(.data[[y_var]]))
+
 
   # Apply log transformation if requested
   if (log_transform) {
@@ -94,17 +79,58 @@ boxplot_comparison <- function(nitrate_data, sites = NULL, log_transform = FALSE
                                        x = siteID,
                                        y = .data[[y_var]],
                                        fill = siteID)) +
-    ggplot2::geom_boxplot(alpha = 0.7, outlier.alpha = 0.5) +
+
+    ggplot2::geom_boxplot(
+      alpha = 0.8,
+      outlier.alpha = 0.7,
+      outlier.size = 1.5,
+      outlier.shape = 21,
+      outlier.fill = "white",
+      outlier.color = "red",
+      width = 0.5,
+      size = 0.6
+    ) +
+
     ggplot2::labs(
       title = title,
-      x = "Site",
-      y = y_label,
-      fill = "Site"
+      x = "Monitoring Site",
+      y = y_label
     ) +
     ggplot2::facet_wrap(~siteID, scales = "free") +
-    ggplot2::theme_minimal() +
+    ggplot2::theme_minimal(base_size = 13) +
     ggplot2::theme(
-      legend.position = "none"
+      plot.title = ggplot2::element_text(
+        face = "bold",
+        size = 16,
+        margin = ggplot2::margin(b = 8),
+        hjust = 0.5
+      ),
+
+      axis.title = ggplot2::element_text(face = "bold", size = 12),
+      axis.title.x = ggplot2::element_text(margin = ggplot2::margin(t = 10)),
+      axis.title.y = ggplot2::element_text(margin = ggplot2::margin(r = 10)),
+      axis.text = ggplot2::element_text(size = 10),
+      axis.text.x = ggplot2::element_text(
+        hjust = 1,
+        vjust = 1,
+        face = "bold"
+      ),
+      legend.position = "none",
+      panel.grid.major = ggplot2::element_line(color = "gray90", linewidth = 0.3),
+      panel.grid.minor = ggplot2::element_line(color = "gray95", linewidth = 0.2),
+      panel.grid.minor.y = ggplot2::element_blank(),
+      plot.background = ggplot2::element_rect(fill = "white", color = NA),
+      panel.background = ggplot2::element_rect(fill = "white", color = NA),
+      plot.margin = ggplot2::margin(20, 20, 20, 20)
+    ) +
+    ggplot2::scale_fill_viridis_d(
+      option = "plasma",
+      end = 0.85,
+      name = "Monitoring Site"
+    ) +
+    ggplot2::scale_y_continuous(
+      expand = ggplot2::expansion(mult = 0.05),
+      labels = scales::label_number(accuracy = 0.1)
     )
 
   return(nitrate_boxplot)
