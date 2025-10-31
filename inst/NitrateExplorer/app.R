@@ -10,13 +10,13 @@
 library(shiny)
 library(dplyr)
 library(lubridate)
-library(shinydashboard)
+#library(shinydashboard)
 library(shinythemes)
 library(plotly)
 
 ui <- fluidPage(
 
-  theme = shinytheme("flatly"),
+  theme = shinythemes::shinytheme("flatly"),
 
   tags$head(
     tags$style(HTML("
@@ -767,7 +767,7 @@ server <- function(input, output, session) {
 
     # Only display the first few columns of key information
     preview_data <- dat |>
-      select(siteID, startDate, surfWaterNitrateMean, surfWaterNitrateStdErMean, finalQF) |>
+      select(siteID, startDate, surfWaterNitrateMean, finalQF) |>
       head(n_show)
 
     preview_data
@@ -812,23 +812,22 @@ server <- function(input, output, session) {
   # Data dictionary
   output$dataDictionary <- renderTable({
     data.frame(
-      `Field Name` = c("siteID", "startDate", "surfWaterNitrateMean",
-                       "surfWaterNitrateMinimum", "surfWaterNitrateMaximum",
-                       "surfWaterNitrateStdErMean", "finalQF", "n"),
+      `Field Name` = c("siteID", "surfWaterNitrateMean", "startDate",
+                       "startTime", "endDate", "endTime",
+                       "finalQF"),
       `Description` = c(
         "Sampling location identifier",
-        "Date when sample was collected",
         "Average nitrate concentration in surface water (mg/L)",
-        "Minimum nitrate concentration in the measurement period (mg/L)",
-        "Maximum nitrate concentration in the measurement period (mg/L)",
-        "Standard error of the mean nitrate concentration",
-        "Quality flag (0 = pass, 1 = fail)",
-        "Number of samples used for calculation"
+        "Start date when sample was collected",
+        "Start time when sample was collected",
+        "End date when sample was collected",
+        "End time when sample was collected",
+        "Quality flag (0 = pass, 1 = fail)"
       ),
-      `Data Type` = c("Character", "Date", "Numeric", "Numeric", "Numeric",
-                      "Numeric", "Integer", "Integer"),
-      `Example` = c("'ARIK', 'LEWI'", "2023-01-15", "207.1", "206.4", "207.7",
-                    "0.14", "0", "15")
+      `Data Type` = c("Character", "Numeric", "date", "Character",
+                      "date", "Character", "Integer"),
+      `Example` = c("'ARIK', 'LEWI'", "207.1" , "2023-01-15", "00:15:00",
+                    "2018-01-01", "00:30:00", "0")
     )
   }, striped = TRUE, hover = TRUE, bordered = TRUE, align = 'l', width = '100%')
 

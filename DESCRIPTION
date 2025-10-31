@@ -16,8 +16,8 @@ LazyData: true
 Imports: 
     dplyr,
     ggplot2,
-    lubridate,
     plotly,
+    scales,
     shiny,
     shinydashboard,
     shinythemes

@@ -16,7 +16,9 @@ package.
 
 ## Installation
 
-You can install the package from GitHub. Run this in R:
+You can install the package from
+[GitHub](https://github.com/ETC5523-2025/assignment-4-packages-and-shiny-apps-Jing0922).
+Run this in R:
 
 ``` r
 # install remotes if you do not have it
