@@ -8,16 +8,13 @@
 #' @export
 #'
 #' @examples
+#' daily_stats <- calculate_daily_stats(nitrate_clean)
+#' head(daily_stats)
 #'
-#' data(nitrate_data)
-#'
-#' daily_summary <- calculate_daily_stats(nitrate_data)
-#'
-#' Calculate daily statistics for specific sites:
+#' # Calculate daily statistics for specific sites:
 #' selected_sites <- c("ARIK", "MAYF")
-#' daily_stats_selected <- calculate_daily_stats(nitrate_data, sites = selected_sites)
-#'
-#' head(daily_summary)
+#' daily_stats_selected <- calculate_daily_stats(nitrate_clean, sites = selected_sites)
+#' head(daily_stats_selected)
 
 calculate_daily_stats <- function(nitrate_data, sites = NULL){
 

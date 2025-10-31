@@ -9,7 +9,13 @@
 #' @export
 #'
 #' @examples
-#' yearly_summary <- calculate_yearly_stats(nitrate_clean)
+#' yearly_stats <- calculate_yearly_stats(nitrate_clean)
+#' head(yearly_stats)
+#'
+#' # Calculate daily statistics for specific sites:
+#' selected_sites <- c("MAYF")
+#' yearly_stats_selected <- calculate_daily_stats(nitrate_clean, sites = selected_sites)
+#' head(yearly_stats_selected)
 calculate_yearly_stats <- function(nitrate_data, sites = NULL) {
   # Input validation
   required_cols <- c("siteID", "startDate", "surfWaterNitrateMean")
@@ -20,16 +26,16 @@ calculate_yearly_stats <- function(nitrate_data, sites = NULL) {
 
   # Filter by sites if specified
   if (!is.null(sites)) {
-    nitrate_data <- nitrate_data %>%
+    nitrate_data <- nitrate_data |>
       dplyr::filter(siteID %in% sites)
   }
 
   # Calculate yearly statistics
-  yearly_summary <- nitrate_data %>%
+  yearly_summary <- nitrate_data |>
     dplyr::mutate(
       year = format(startDate, "%Y")
-    ) %>%
-    dplyr::group_by(siteID, year) %>%
+    ) |>
+    dplyr::group_by(siteID, year) |>
     dplyr::summarise(
       yearly_mean = mean(surfWaterNitrateMean, na.rm = TRUE),
       yearly_sd = sd(surfWaterNitrateMean, na.rm = TRUE),

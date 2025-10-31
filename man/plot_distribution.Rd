@@ -30,5 +30,26 @@ plotly object showing distribution
 Plot distribution of nitrate concentrations
 }
 \examples{
+# Basic Usage - All Sites
 plot_distribution(nitrate_clean, bin_size = 10)
+
+# Single site analysis
+plot_distribution(nitrate_clean, sites = "ARIK", bin_size = 20)
+
+# Compare multiple sites
+plot_distribution(
+  nitrate_clean,
+  sites = c("ARIK", "KING", "COMO"),
+  bin_size = 25,
+  show_density = TRUE
+)
+
+# Multiple sites are displayed side-by-side.
+plot_distribution(
+  nitrate_clean,
+  sites = c("ARIK", "KING", "COMO", "WLOU", "SYCA"),
+  bin_size = 15,
+  facet_sites = TRUE,
+  show_density = TRUE
+)
 }

@@ -3,8 +3,10 @@ Title: Explore and Visualize NEON Surface Water Nitrate Data
 Version: 0.0.0.9000
 Authors@R: 
     person("Jingyi", "Wang", , "jwan0560@student.monash.edu", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Description: Provides tools for interactive exploration and analysis of nitrate concentration 
+    data from the National Ecological Observatory Network (NEON).
 License: MIT + file LICENSE
+URL: https://github.com/ETC5523-2025/assignment-4-packages-and-shiny-apps-Jing0922
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3

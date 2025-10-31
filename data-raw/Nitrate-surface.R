@@ -1,7 +1,4 @@
-## code to prepare `Nitrate-surface` dataset goes here
-
-# The link is https://data.neonscience.org/data-products/DP1.20033.001/RELEASE-2025
-
+## Code to prepare 'Nitrate-surface' dataset goes here
 
 library(neonUtilities)
 library(usethis)
@@ -36,9 +33,6 @@ nitrate_clean <- nitrate_raw |>
     startDateTime,
     endDateTime,
     surfWaterNitrateMean,
-    surfWaterNitrateMinimum,
-    surfWaterNitrateMaximum,
-    surfWaterNitrateStdErMean,
     finalQF
   ) |>
 
@@ -56,9 +50,9 @@ nitrate_clean <- nitrate_raw |>
     startTime = format(startDateTime, "%H:%M:%S"),
     endDate = as.Date(endDateTime),
     endTime = format(endDateTime, "%H:%M:%S")
-  )
+  ) |>
 
-
+  dplyr::select(-startDateTime, -endDateTime, -horizontalPosition, -verticalPosition)
 
 
 

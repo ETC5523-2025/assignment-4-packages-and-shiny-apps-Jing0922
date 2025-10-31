@@ -1,9 +1,9 @@
 ---
-title: "nitrate_explorer_guide"
+title: "Nitrate Explorer Guide"
 author: "Jingyi Wang"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{nitrate_explorer_guide}
+  %\VignetteIndexEntry{Nitrate Explorer Guide}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -46,14 +46,12 @@ If you want to run the examples on your computer, install the package and then f
 
 ```{r setup}
 library(NitrateExplorer)
-library(plotly)
-library(dplyr)
-# load package data (this does not read CSV files)
+
 data("nitrate_clean", package = "NitrateExplorer")
 head(nitrate_clean)
 ```
 
->   Note: The data nitrate_clean is cleaned and included in the package.
+The data nitrate_clean is cleaned and included in the package.
 The cleaning script is in data-raw/Nitrate-surface.R.
 
 
@@ -135,7 +133,7 @@ Similar functions are available for monthly (calculate_monthly_stats) and yearly
 ### Make time series plot: plot_time_series()
 
 
-```{r time series plot}
+```{r time series plot, fig.alt="Monthly Mean Nitrate Concentrations"}
 # plot time series of aggregated data (monthly example)
 agg <- calculate_monthly_stats(nitrate_clean)
 plot_time_series(agg, sites = c("ARIK","LEWI"), aggregation = "monthly")
@@ -149,7 +147,8 @@ this change may be real.
 
 
 ### Make boxplot for selected sites: boxplot_comparison()
-```{r boxplot}
+
+```{r boxplot, fig.alt="Distribution of Nitrate Concentration by Site"}
 boxplot_comparison(nitrate_clean, sites = c("ARIK","LEWI","KING"))
 ```
 
@@ -159,7 +158,7 @@ Check if one site always has higher values than others.
 
 ### Make Distribution plot:
 
-```{r Distribution plot}
+```{r Distribution plot, fig.alt="Distribution of Nitrate Concentrantions"}
 plot_distribution(nitrate_clean,
                   sites = c("ARIK"),
                   bin_size = 20,
@@ -187,7 +186,7 @@ You can re-run it to regenerate `nitrate_clean`.
 At the end of that script we save the cleaned data into the package with:
 
 ```{r Reproducibility}
-usethis::use_data(nitrate_clean, overwrite = TRUE)
+# usethis::use_data(nitrate_clean, overwrite = TRUE)
 ```
 
 # Troubleshooting
@@ -215,6 +214,3 @@ This vignette shows basic use of the package.
 For more analysis, open the Shiny app and try different filters.
 If you want help with code examples, check the package R files,
 or contact the author.
-
-
-

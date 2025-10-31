@@ -34,6 +34,6 @@ boxplot_comparison(nitrate_clean)
 
 # With specific sites and log transformation
 boxplot_comparison(nitrate_clean,
-                     sites = c("LEWI", "OTHER"),
+                     sites = c("LEWI"),
                      log_transform = TRUE)
 }

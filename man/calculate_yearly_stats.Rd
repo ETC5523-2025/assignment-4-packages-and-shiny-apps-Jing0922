@@ -18,5 +18,11 @@ A tibble with yearly summary statistics
 calculates yearly summary statistics for nitrate concentration data.
 }
 \examples{
-yearly_summary <- calculate_yearly_stats(nitrate_clean)
+yearly_stats <- calculate_yearly_stats(nitrate_clean)
+head(yearly_stats)
+
+# Calculate daily statistics for specific sites:
+selected_sites <- c("MAYF")
+yearly_stats_selected <- calculate_daily_stats(nitrate_clean, sites = selected_sites)
+head(yearly_stats_selected)
 }
