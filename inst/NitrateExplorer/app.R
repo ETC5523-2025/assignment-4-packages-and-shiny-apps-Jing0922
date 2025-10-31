@@ -290,7 +290,7 @@ ui <- fluidPage(
                 )
               )
             ),
-            # 替换现有的右侧面板内容（在Interactive Plots标签页中）
+
             column(
               4,
               div(
@@ -408,7 +408,6 @@ ui <- fluidPage(
         ),
 
 
-        # 在tabsetPanel中添加这个新的tabPanel（放在合适的位置）
         tabPanel(
           "📖 Data Dictionary",
           br(),
@@ -416,7 +415,7 @@ ui <- fluidPage(
             style = "background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);",
             h4("📚 Data Dictionary & Field Descriptions"),
 
-            # 数据来源信息
+
             div(
               style = "background: #e8f4fd; padding: 15px; border-radius: 6px; margin-bottom: 20px;",
               tags$h5("📋 Dataset Information"),
@@ -426,13 +425,13 @@ ui <- fluidPage(
               tags$p(icon("map-marker"), tags$strong("Sites:"), "ARIK, COMO, KING, LEWI, MAYF")
             ),
 
-            # 字段解释表格
+
             tags$h5("📊 Field Descriptions"),
             tags$p("Complete description of all variables in the dataset:"),
 
             tableOutput("dataDictionary"),
 
-            # 使用说明
+            # Instructions for use
             div(
               style = "background: #fff3cd; padding: 15px; border-radius: 6px; margin-top: 20px;",
               tags$h5("💡 How to Use This Information"),
@@ -501,7 +500,7 @@ server <- function(input, output, session) {
     nitrate_data <- data()
 
 
-    nitrate_data %>%
+    nitrate_data |>
       filter(
         siteID %in% input$siteID,
         startDate >= input$dateRange[1],
@@ -542,7 +541,7 @@ server <- function(input, output, session) {
 
     # Handle different date columns according to different aggregation levels
     if (input$tableAggregation == "daily" && "date" %in% names(stats_data)) {
-      stats_data <- stats_data %>%
+      stats_data <- stats_data |>
         mutate(date = as.Date(date))
     }
 
@@ -717,8 +716,8 @@ server <- function(input, output, session) {
     data <- filtered_data()
 
     # Five-number summary
-    stats <- data %>%
-      group_by(siteID) %>%
+    stats <- data |>
+      group_by(siteID) |>
       summarise(
         n = n(),
         Min = min(surfWaterNitrateMean, na.rm = TRUE),
@@ -767,8 +766,8 @@ server <- function(input, output, session) {
     }
 
     # Only display the first few columns of key information
-    preview_data <- dat %>%
-      select(siteID, startDate, surfWaterNitrateMean, surfWaterNitrateStdErMean, finalQF) %>%
+    preview_data <- dat |>
+      select(siteID, startDate, surfWaterNitrateMean, surfWaterNitrateStdErMean, finalQF) |>
       head(n_show)
 
     preview_data

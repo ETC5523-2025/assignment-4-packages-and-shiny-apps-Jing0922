@@ -1,9 +1,11 @@
 ## code to prepare `Nitrate-surface` dataset goes here
 
+# The link is https://data.neonscience.org/data-products/DP1.20033.001/RELEASE-2025
+
+
 library(neonUtilities)
-library(neonOS)
-library(tidyverse)
 library(usethis)
+library(dplyr)
 
 
 sites <- c("ARIK","COMO","KING","LEWI","MAYF")
@@ -27,7 +29,7 @@ nitrate_raw <- nitrate_list$NSW_15_minute
 
 nitrate_clean <- nitrate_raw |>
 
-  select(
+  dplyr::select(
     siteID,
     horizontalPosition,
     verticalPosition,
@@ -41,13 +43,13 @@ nitrate_clean <- nitrate_raw |>
   ) |>
 
   # Filter valid data
-  filter(
+  dplyr::filter(
     !is.na(surfWaterNitrateMean),
     finalQF == 0      # Quality flag indicating whether a data product has passed or failed an overall assessment of its quality, detailed in NEON.DOC.001113 (1=fail, 0=pass)
   ) |>
 
   # Convert time column format
-  mutate(
+  dplyr::mutate(
     startDateTime = as.POSIXct(startDateTime, format = "%Y-%m-%d %H:%M:%S"),
     endDateTime = as.POSIXct(endDateTime, format = "%Y-%m-%d %H:%M:%S"),
     startDate = as.Date(startDateTime),

@@ -19,23 +19,23 @@
 plot_time_series <- function(nitrate_data, sites = NULL, aggregation = "daily",
                              start_date = NULL, end_date = NULL, show_ribbon = FALSE) {
 
-  # 动态检测数据格式
+
   if ("surfWaterNitrateMean" %in% names(nitrate_data)) {
-    # 原始数据格式
+
     required_cols <- c("siteID", "startDate", "surfWaterNitrateMean")
     missing_cols <- setdiff(required_cols, names(nitrate_data))
     if (length(missing_cols) > 0) {
       stop("Missing required columns: ", paste(missing_cols, collapse = ", "))
     }
 
-    # 使用原始数据
+
     plot_data <- nitrate_data
     time_var <- "startDate"
     y_var <- "surfWaterNitrateMean"
     title <- "Nitrate Concentrations"
 
   } else {
-    # 聚合数据格式 - 根据列名动态检测
+    # Aggregate data format - dynamically detected based on column name
     if (aggregation == "daily" && all(c("date", "daily_mean") %in% names(nitrate_data))) {
       plot_data <- nitrate_data
       time_var <- "date"

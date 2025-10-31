@@ -30,5 +30,5 @@ plotly object showing distribution
 Plot distribution of nitrate concentrations
 }
 \examples{
-plot_distribution(nitrate_clean)
+plot_distribution(nitrate_clean, bin_size = 10)
 }

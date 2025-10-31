@@ -10,7 +10,7 @@
 #' @export
 #'
 #' @examples
-#' plot_distribution(nitrate_clean)
+#' plot_distribution(nitrate_clean, bin_size = 10)
 plot_distribution <- function(data, sites = NULL, bin_size = 20,
                               show_density = FALSE, facet_sites = FALSE) {
 

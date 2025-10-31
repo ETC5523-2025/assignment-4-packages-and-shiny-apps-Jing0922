@@ -1,0 +1,220 @@
+---
+title: "nitrate_explorer_guide"
+author: "Jingyi Wang"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{nitrate_explorer_guide}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+# Introduction
+
+This short vignette explains how to use the *NitrateExplorer* package.
+The package helps to explore NEON surface-water nitrate data.
+It gives interactive plots and simple summaries.
+The vignette shows how to load the data, make common plots,
+and run the Shiny app.
+
+# Package Overview
+
+The NitrateExplorer package includes:
+
+- Interactive Shiny application for data exploration
+
+- Data processing functions for statistical analysis
+
+- Visualization tools for time series and distribution analysis
+
+- Quality-controlled dataset from NEON monitoring sites
+
+
+All examples use functions in the package.
+
+
+# Installation
+
+If you want to run the examples on your computer, install the package and then follow the steps below.
+
+```{r setup}
+library(NitrateExplorer)
+library(plotly)
+library(dplyr)
+# load package data (this does not read CSV files)
+data("nitrate_clean", package = "NitrateExplorer")
+head(nitrate_clean)
+```
+
+>   Note: The data nitrate_clean is cleaned and included in the package.
+The cleaning script is in data-raw/Nitrate-surface.R.
+
+
+# Short description of data
+
+The package uses data from NEON (National Ecological Observatory Network), specifically the "Nitrate in Surface Water" product (DP1.20033.001). The data have been quality-filtered to include only measurements that passed all quality checks (finalQF = 0).
+
+
+The main variables are simple:
+
+- siteID: site code where samples were taken.
+
+- startDate: date of sampling.
+
+- surfWaterNitrateMean: average nitrate concentration (mg/L).
+
+- finalQF: quality flag (0 = pass, 1 = fail).
+
+- n: number of measurements used.
+
+You can find a full data dictionary in the package and in the app.
+
+
+# Using the Shiny Application
+## Launching the App
+
+To run the app from the installed package:
+
+```{r Run app}
+# run_nitrate_app()
+```
+
+The app lets you:
+
+- choose sites and date range,
+
+- change aggregation (daily / monthly / yearly),
+
+- change plot type (time series, boxplot, distribution),
+
+- download filtered data or the current plot.
+
+Inside the app, check the Data Dictionary tab for field meanings.
+Also read the Plot Guidance box for quick interpretation tips.
+
+
+
+
+# Quick Examples of Statistical Functions
+
+This section shows common analyses. Run them after you install the package.
+
+## Daily Statistics
+
+
+```{r Daily Statistics}
+# Calculate daily statistics
+daily <- calculate_daily_stats(nitrate_clean)
+head(daily)
+```
+
+This function return a data frame with:
+
+- Daily mean nitrate concentrations
+
+- Standard errors
+
+- Sample sizes for each day
+
+
+## Monthly and Yearly Aggregation
+
+Similar functions are available for monthly (calculate_monthly_stats) and yearly (calculate_yearly_stats) aggregation, providing different perspectives on temporal patterns.
+
+
+
+## Visualization Functions
+
+### Make time series plot: plot_time_series()
+
+
+```{r time series plot}
+# plot time series of aggregated data (monthly example)
+agg <- calculate_monthly_stats(nitrate_clean)
+plot_time_series(agg, sites = c("ARIK","LEWI"), aggregation = "monthly")
+```
+
+This plot helps to see trends and seasonal patterns.
+Look at the line shape and any sudden changes.
+If many sites show the same change at the same time,
+this change may be real.
+
+
+
+### Make boxplot for selected sites: boxplot_comparison()
+```{r boxplot}
+boxplot_comparison(nitrate_clean, sites = c("ARIK","LEWI","KING"))
+```
+
+Use boxplots to compare central values and variability across sites.
+Check if one site always has higher values than others.
+
+
+### Make Distribution plot:
+
+```{r Distribution plot}
+plot_distribution(nitrate_clean,
+                  sites = c("ARIK"),
+                  bin_size = 20,
+                  show_density = TRUE,
+                  facet_sites = FALSE)
+```
+
+This plot shows the shape of the distribution.
+It helps find skewness and outliers.
+
+
+
+# Interpretation tips
+
+Time series: look for trend and seasonal cycles. A steady rise across time can show long-term increase.
+
+Boxplot: if a site's median is much higher than others, it may have persistent pollution.
+
+Distribution: skewed right means a few very large values.
+
+# Reproducibility
+
+The data cleaning script is in `data-raw/Nitrate-surface.R`.
+You can re-run it to regenerate `nitrate_clean`.
+At the end of that script we save the cleaned data into the package with:
+
+```{r Reproducibility}
+usethis::use_data(nitrate_clean, overwrite = TRUE)
+```
+
+# Troubleshooting
+
+## Common Issues
+
+- Application won't launch: Ensure all dependencies are installed
+
+- No data displayed: Check site selection and date range
+
+- Slow performance: Reduce the number of selected sites or shorten date range
+
+## Getting Help
+
+- Review the data dictionary in the application
+
+- Check package documentation: ?function_name
+
+
+
+
+# Conclusion
+
+This vignette shows basic use of the package.
+For more analysis, open the Shiny app and try different filters.
+If you want help with code examples, check the package R files,
+or contact the author.
+
+
+

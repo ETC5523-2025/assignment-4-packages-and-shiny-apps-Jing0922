@@ -1,3 +1,5 @@
+README: NitrateExplorer
+================
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -7,14 +9,23 @@
 
 <!-- badges: end -->
 
-## Overview
-
-The `NEONNitrateExplorer` package provides tools to explore and analyze
-nitrate concentration data in surface water from the National Ecological
-Observatory Network (NEON). It includes a user-friendly Shiny
-application for interactive data visualization and exploration.
+NitrateExplorer is an R package. It helps you explore NEON surface-water
+nitrate data. The package has a Shiny app and simple functions for
+summary and plotting. The data used in the app is included in the
+package.
 
 ## Installation
+
+You can install the package from GitHub. Run this in R:
+
+``` r
+# install remotes if you do not have it
+if (!requireNamespace("remotes", quietly = TRUE)) install.packages("remotes")
+
+
+# install the package from GitHub (replace with your repo)
+remotes::install_github("ETC5523-2025/assignment-4-packages-and-shiny-apps-Jing0922")
+```
 
 You can install the development version of NitrateExplorer from
 [GitHub](https://github.com/) with:
@@ -24,58 +35,100 @@ You can install the development version of NitrateExplorer from
 pak::pak("ETC5523-2025/assignment-4-packages-and-shiny-apps-Jing0922")
 ```
 
-## Example
+## Run the Shiny app
 
-This is a basic example which shows you how to solve a common problem:
+After install, run:
 
 ``` r
 library(NitrateExplorer)
-## basic example code
+# run_nitrate_app()
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+This will open the interactive app. The app lets you choose sites,
+dates, and plot types. It also allows download of filtered data and
+plots.
+
+## Main functions
+
+The package includes these main functions:
+
+- run_app(): launch the Shiny app.
+
+- calculate_daily_stats(data) — return daily summaries.
+
+- calculate_monthly_stats(data) — return monthly summaries.
+
+- calculate_yearly_stats(data) — return yearly summaries.
+
+- plot_time_series(agg_data, sites, aggregation) — draw time series plot
+  from aggregated data.
+
+- boxplot_comparison(data, sites) — draw boxplots to compare sites.
+
+- plot_distribution(data, sites, bin_size, show_density, facet_sites) —
+  draw distribution plot.
+
+All functions are documented. See the man/ folder for details and
+examples.
+
+## Data
+
+The package includes the `nitrate_clean` dataset containing
+quality-controlled nitrate measurements from NEON sites. It is saved
+with `usethis::use_data()` in `data/`. When using this data, please cite
+NEON appropriately according to their data use policies.
+
+Key fields:
+
+- siteID: ARIK, COMO, KING, LEWI, MAYF
+
+- startDate: date of sample.
+
+- surfWaterNitrateMean: nitrate concentration (mg/L).
+
+- finalQF: quality flag (0 = pass).
+
+- n: number of measurements.
+
+The cleaning script is in data-raw/Nitrate-surface.R.
+
+## Vignette and help
+
+A vignette explains the main workflows. To view it, run:
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+vignette("nitrate_explorer_guide")
+#> Warning: vignette 'nitrate_explorer_guide' not found
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this.
+If you need more help, read the function help pages:
 
-You can also embed plots, for example:
+``` r
+?calculate_monthly_stats
+#> starting httpd help server ... done
+?plot_time_series
+```
 
-<img src="man/figures/README-pressure-1.png" width="100%" />
+## Citation and source
 
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+Data source: NEON (National Ecological Observatory Network). Nitrate in
+surface water (DP1.20033.001), RELEASE-2025.
+<https://doi.org/10.48443/wwa3-p420>. Dataset accessed from
+<https://data.neonscience.org/data-products/DP1.20033.001/RELEASE-2025>
+on October 27, 2025.
 
-## Data Source
+**Please cite NEON when you use the data.**
 
-The package uses data from the **[NEON Surface Water Nitrate
-(DP1.20033.001)](https://data.neonscience.org/data-products/DP1.20033.001/RELEASE-2025)**
-product. The data includes:
+## Contributing
 
-- **Sites**: ARIK (Arikaree River), COMO (Como Creek), KING (Kings
-  Creek), LEWI (Lewis Run), MAYF (Mayberry Creek)
-- **Time Period**: January 2018 - December 2023
-- **Variables**:
-  - `surfWaterNitrateMean`: Mean nitrate concentration (mg/L)
-  - `surfWaterNitrateMinimum`: Minimum nitrate concentration
-  - `surfWaterNitrateMaximum`: Maximum nitrate concentration  
-  - `surfWaterNitrateStdErMean`: Standard error of the mean
-  - `finalQF`: Quality flag (0 = pass, 1 = fail)
+Contributions are welcome! Please feel free to submit pull requests or
+open issues for bugs and feature requests.
 
-## Data Cleaning
+## License
 
-The raw data has been processed to: - Remove records with missing
-nitrate concentration values - Filter for quality-approved data only
-(`finalQF == 0`) - Standardize datetime formats - Select relevant
-variables for analysis
+MIT License (see file LICENSE).
+
+## Contact
+
+For questions or support, please open an issue on GitHub or contact
+jwan0560@student.monash.edu.
