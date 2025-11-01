@@ -49,7 +49,8 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">monthly_stats</span> <span class="op">&lt;-</span> <span class="fu">calculate_monthly_stats</span><span class="op">(</span><span class="va">nitrate_clean</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Calculate monthly statistics</span></span></span>
+<span class="r-in"><span><span class="va">monthly_stats</span> <span class="op">&lt;-</span> <span class="fu">calculate_monthly_stats</span><span class="op">(</span><span class="va">nitrate_clean</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">monthly_stats</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   siteID year_month monthly_mean monthly_sd monthly_max monthly_min n_days</span>
@@ -61,19 +62,19 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> ARIK   2018-05           10.7       0.668        12.6         9.4     15</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> ARIK   2018-09            2.21      2.70          8.5        -<span style="color: #BB0000;">0.9</span>     12</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Calculate daily statistics for specific sites:</span></span></span>
+<span class="r-in"><span><span class="co"># Calculate monthly statistics for specific sites</span></span></span>
 <span class="r-in"><span><span class="va">selected_sites</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ARIK"</span>, <span class="st">"MAYF"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">monthly_stats_selected</span> <span class="op">&lt;-</span> <span class="fu"><a href="calculate_daily_stats.html">calculate_daily_stats</a></span><span class="op">(</span><span class="va">nitrate_clean</span>, sites <span class="op">=</span> <span class="va">selected_sites</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">monthly_stats_selected</span> <span class="op">&lt;-</span> <span class="fu">calculate_monthly_stats</span><span class="op">(</span><span class="va">nitrate_clean</span>, sites <span class="op">=</span> <span class="va">selected_sites</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">monthly_stats_selected</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 7</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   siteID date       daily_mean daily_sd daily_max daily_min n_observations</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> ARIK   2018-01-03      13.7     0.141      13.8      13.6              2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> ARIK   2018-01-04      12.5     1.20       14.1      10.3             96</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> ARIK   2018-01-05      10.3     0.763      11.7       9.1             96</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> ARIK   2018-01-06       9.97    0.739      11         8.6             96</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> ARIK   2018-01-07       9.21    0.690      10.6       8               96</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> ARIK   2018-01-08       8.10    0.349       9         7.6             96</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   siteID year_month monthly_mean monthly_sd monthly_max monthly_min n_days</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> ARIK   2018-01            8.49      1.35         14.1         6.3     28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> ARIK   2018-02            6.84      2.98         11.3         3.1     28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> ARIK   2018-03            6.73      1.35          9.5         4.1     31</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> ARIK   2018-04            9.22      1.10         13.4         7       30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> ARIK   2018-05           10.7       0.668        12.6         9.4     15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> ARIK   2018-09            2.21      2.70          8.5        -<span style="color: #BB0000;">0.9</span>     12</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

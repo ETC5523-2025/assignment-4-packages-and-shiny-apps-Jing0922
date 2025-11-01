@@ -61,7 +61,8 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">yearly_stats</span> <span class="op">&lt;-</span> <span class="fu">calculate_yearly_stats</span><span class="op">(</span><span class="va">nitrate_clean</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Calculate yearly statistics</span></span></span>
+<span class="r-in"><span><span class="va">yearly_stats</span> <span class="op">&lt;-</span> <span class="fu">calculate_yearly_stats</span><span class="op">(</span><span class="va">nitrate_clean</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">yearly_stats</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   siteID year  yearly_mean yearly_sd yearly_max yearly_min n_year</span>
@@ -73,19 +74,19 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> ARIK   2022         6.56      3.52       30.1       -<span style="color: #BB0000;">0.9</span>    226</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> COMO   2018         6.15      2.80       15.4        0.2    260</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Calculate daily statistics for specific sites:</span></span></span>
-<span class="r-in"><span><span class="va">selected_sites</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MAYF"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">yearly_stats_selected</span> <span class="op">&lt;-</span> <span class="fu"><a href="calculate_daily_stats.html">calculate_daily_stats</a></span><span class="op">(</span><span class="va">nitrate_clean</span>, sites <span class="op">=</span> <span class="va">selected_sites</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Calculate yearly statistics for specific sites:</span></span></span>
+<span class="r-in"><span><span class="va">selected_sites</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"COMO"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">yearly_stats_selected</span> <span class="op">&lt;-</span> <span class="fu">calculate_yearly_stats</span><span class="op">(</span><span class="va">nitrate_clean</span>, sites <span class="op">=</span> <span class="va">selected_sites</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">yearly_stats_selected</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 7</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   siteID date       daily_mean daily_sd daily_max daily_min n_observations</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> MAYF   2018-07-07       9.06    2.53       13.6       5.4             65</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> MAYF   2018-07-08       4.35    0.391       5.2       3.6             90</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> MAYF   2018-07-09       3.49    0.150       3.9       3.3             94</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> MAYF   2018-07-10       4.47    0.882      10.4       3.3             96</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> MAYF   2018-07-11       9.4     4.00       16.7       4.6             96</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> MAYF   2018-07-12       4.32    0.111       4.6       4.1             64</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   siteID year  yearly_mean yearly_sd yearly_max yearly_min n_year</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> COMO   2018         6.15      2.80       15.4        0.2    260</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> COMO   2019         4.74      2.69       14.7        0.9    253</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> COMO   2020         6.42      4.78       24          0      275</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> COMO   2021         4.95      2.55       15.2       -<span style="color: #BB0000;">0.4</span>    265</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> COMO   2022         5.77      3.00       20.1       -<span style="color: #BB0000;">0.1</span>    311</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> COMO   2023         4.79      3.03       29.4       -<span style="color: #BB0000;">0.8</span>    262</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

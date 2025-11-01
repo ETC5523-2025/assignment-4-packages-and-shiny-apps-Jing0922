@@ -13,11 +13,12 @@ A tibble with monthly summary statistics
 calculates monthly summary statistics for nitrate concentration data.
 }
 \examples{
+# Calculate monthly statistics
 monthly_stats <- calculate_monthly_stats(nitrate_clean)
 head(monthly_stats)
 
-# Calculate daily statistics for specific sites:
+# Calculate monthly statistics for specific sites
 selected_sites <- c("ARIK", "MAYF")
-monthly_stats_selected <- calculate_daily_stats(nitrate_clean, sites = selected_sites)
+monthly_stats_selected <- calculate_monthly_stats(nitrate_clean, sites = selected_sites)
 head(monthly_stats_selected)
 }

@@ -29,7 +29,7 @@ Generates a boxplot to compare the distribution of nitrate concentrations
 across different NEON sites. Useful for identifying sites with consistently high or low levels.
 }
 \examples{
-
+# Basic boxplot
 boxplot_comparison(nitrate_clean)
 
 # With specific sites and log transformation

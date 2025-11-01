@@ -14,6 +14,7 @@ Calculates daily summary statistics (mean, standard deviation, maximum, minimum)
 for nitrate concentration data from NEON surface water measurements.
 }
 \examples{
+# Calculate daily statistics
 daily_stats <- calculate_daily_stats(nitrate_clean)
 head(daily_stats)
 

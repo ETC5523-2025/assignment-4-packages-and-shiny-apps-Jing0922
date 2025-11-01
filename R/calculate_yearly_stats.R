@@ -9,12 +9,13 @@
 #' @export
 #'
 #' @examples
+#' # Calculate yearly statistics
 #' yearly_stats <- calculate_yearly_stats(nitrate_clean)
 #' head(yearly_stats)
 #'
-#' # Calculate daily statistics for specific sites:
-#' selected_sites <- c("MAYF")
-#' yearly_stats_selected <- calculate_daily_stats(nitrate_clean, sites = selected_sites)
+#' # Calculate yearly statistics for specific sites
+#' selected_sites <- c("COMO")
+#' yearly_stats_selected <- calculate_yearly_stats(nitrate_clean, sites = selected_sites)
 #' head(yearly_stats_selected)
 calculate_yearly_stats <- function(nitrate_data, sites = NULL) {
   # Input validation

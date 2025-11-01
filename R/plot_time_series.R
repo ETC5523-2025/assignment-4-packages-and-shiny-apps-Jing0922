@@ -13,8 +13,15 @@
 #' @export
 #'
 #' @examples
-#' # Daily aggregated time series
-#' plot_time_series(nitrate_clean, aggregation = "daily")
+#' # Daily aggregated time series for specific sites
+#' selected_sites <- c("ARIK", "COMO")
+#' plot_time_series(nitrate_clean, sites = selected_sites)
+#'
+#' # Daily aggregated time series with date filtering
+#' plot_time_series(nitrate_clean,
+#'                  aggregation =  "daily",
+#'                  start_date = "2023-01-01",
+#'                  end_date = "2023-12-31")
 plot_time_series <- function(nitrate_data, sites = NULL, aggregation = "daily",
                              start_date = NULL, end_date = NULL) {
 

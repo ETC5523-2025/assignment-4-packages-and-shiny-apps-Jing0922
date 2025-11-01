@@ -13,7 +13,7 @@
 #' @export
 #'
 #' @examples
-#'
+#' # Basic boxplot
 #' boxplot_comparison(nitrate_clean)
 #'
 #' # With specific sites and log transformation
