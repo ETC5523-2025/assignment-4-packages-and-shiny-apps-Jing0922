@@ -25,12 +25,13 @@ Run this in R:
 if (!requireNamespace("remotes", quietly = TRUE)) install.packages("remotes")
 
 
-# install the package from GitHub (replace with your repo)
+# install the package from GitHub
 remotes::install_github("ETC5523-2025/assignment-4-packages-and-shiny-apps-Jing0922")
 ```
 
 You can install the development version of NitrateExplorer from
-[GitHub](https://github.com/) with:
+[GitHub](https://github.com/ETC5523-2025/assignment-4-packages-and-shiny-apps-Jing0922)
+with:
 
 ``` r
 # install.packages("pak")
@@ -43,7 +44,10 @@ After install, run:
 
 ``` r
 library(NitrateExplorer)
-# run_nitrate_app()
+```
+
+``` r
+run_nitrate_app()
 ```
 
 This will open the interactive app. The app lets you choose sites,
@@ -54,23 +58,22 @@ plots.
 
 The package includes these main functions:
 
-- run_app(): launch the Shiny app.
+- `run_app()`: launch the Shiny app.
 
-- calculate_daily_stats(data) — return daily summaries.
+- `calculate_daily_stats(data)` : return daily summaries.
 
-- calculate_monthly_stats(data) — return monthly summaries.
+- `calculate_monthly_stats(data)` : return monthly summaries.
 
-- calculate_yearly_stats(data) — return yearly summaries.
+- `calculate_yearly_stats(data)` : return yearly summaries.
 
-- plot_time_series(agg_data, sites, aggregation) — draw time series plot
-  from aggregated data.
+- `plot_time_series(agg_data, sites, aggregation)` : draw time series
+  plot from aggregated data.
 
-- boxplot_comparison(data, sites) — draw boxplots to compare sites.
+- `boxplot_comparison(data, sites)` : draw boxplots to compare sites.
 
-- plot_distribution(data, sites, bin_size, show_density, facet_sites) —
-  draw distribution plot.
+- `plot_distribution(data, sites, bin_size, show_density, facet_sites)` : draw distribution plot.
 
-All functions are documented. See the man/ folder for details and
+All functions are documented. See the `man/` folder for details and
 examples.
 
 ## Data
@@ -86,9 +89,9 @@ Key fields:
 
 - startDate: date of sample.
 
-- surfWaterNitrateMean: nitrate concentration (mg/L).
+- surfWaterNitrateMean: average nitrate concentration (mg/L).
 
-- finalQF: quality flag (0 = pass).
+- finalQF: quality flag (0 = pass, 1 = fail).
 
 - n: number of measurements.
 
@@ -96,18 +99,14 @@ The cleaning script is in data-raw/Nitrate-surface.R.
 
 ## Vignette and help
 
-A vignette explains the main workflows. To view it, run:
-
-``` r
-vignette("nitrate_explorer_guide")
-#> Warning: vignette 'nitrate_explorer_guide' not found
-```
+A vignette explains the main workflows. View the full vignette on our
+documentation website: [**Nitrate Explorer
+Guide**](https://etc5523-2025.github.io/assignment-4-packages-and-shiny-apps-Jing0922/articles/nitrate_explorer_guide.html)
 
 If you need more help, read the function help pages:
 
 ``` r
 ?calculate_monthly_stats
-#> starting httpd help server ... done
 ?plot_time_series
 ```
 
@@ -132,5 +131,6 @@ MIT License (see file LICENSE).
 
 ## Contact
 
-For questions or support, please open an issue on GitHub or contact
-jwan0560@student.monash.edu.
+For questions or support, please open an issue on
+[GitHub](https://github.com/ETC5523-2025/assignment-4-packages-and-shiny-apps-Jing0922)
+or contact jwan0560@student.monash.edu.

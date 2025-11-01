@@ -1,7 +1,40 @@
-url: https://github.com/ETC5523-2025/assignment-4-packages-and-shiny-apps-Jing0922
+url: https://etc5523-2025.github.io/assignment-4-packages-and-shiny-apps-Jing0922/
+
 template:
   bootstrap: 5
-  light-switch: true
-  theme: gruvbox-light
-  theme-dark: gruvbox-dark
+  bslib:
+    font_scale: 0.9
+    bootswatch: litera
+
+
+home:
+  strip_header: true
+  links:
+    - text: Get Started
+      href: articles/nitrate_explorer_guide.html
+
+
+
+reference:
+  - title: "Data Cleaning"
+    contents:
+      - nitrate_clean
+  - title: "Statistical Analysis"
+    contents:
+      - calculate_daily_stats
+      - calculate_monthly_stats
+      - calculate_yearly_stats
+  - title: "Visualization"
+    contents:
+      - plot_time_series
+      - plot_distribution
+      - boxplot_comparison
+  - title: "Shiny App"
+    contents:
+      - run_nitrate_app
+
+articles:
+  - title: "Getting Started Guide"
+    contents:
+      - nitrate_explorer_guide
 

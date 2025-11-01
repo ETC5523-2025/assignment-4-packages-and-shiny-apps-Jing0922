@@ -51,14 +51,13 @@ data("nitrate_clean", package = "NitrateExplorer")
 head(nitrate_clean)
 ```
 
-The data nitrate_clean is cleaned and included in the package.
+Note: The data nitrate_clean is cleaned and included in the package.
 The cleaning script is in data-raw/Nitrate-surface.R.
 
 
 # Short description of data
 
 The package uses data from NEON (National Ecological Observatory Network), specifically the "Nitrate in Surface Water" product (DP1.20033.001). The data have been quality-filtered to include only measurements that passed all quality checks (finalQF = 0).
-
 
 The main variables are simple:
 
@@ -70,7 +69,6 @@ The main variables are simple:
 
 - finalQF: quality flag (0 = pass, 1 = fail).
 
-- n: number of measurements used.
 
 You can find a full data dictionary in the package and in the app.
 
@@ -81,7 +79,8 @@ You can find a full data dictionary in the package and in the app.
 To run the app from the installed package:
 
 ```{r Run app}
-# run_nitrate_app()
+#| eval: false
+run_nitrate_app()
 ```
 
 The app lets you:
@@ -98,14 +97,11 @@ Inside the app, check the Data Dictionary tab for field meanings.
 Also read the Plot Guidance box for quick interpretation tips.
 
 
-
-
 # Quick Examples of Statistical Functions
 
 This section shows common analyses. Run them after you install the package.
 
 ## Daily Statistics
-
 
 ```{r Daily Statistics}
 # Calculate daily statistics
@@ -131,7 +127,6 @@ Similar functions are available for monthly (calculate_monthly_stats) and yearly
 ## Visualization Functions
 
 ### Make time series plot: plot_time_series()
-
 
 ```{r time series plot, fig.alt="Monthly Mean Nitrate Concentrations"}
 # plot time series of aggregated data (monthly example)
@@ -186,7 +181,8 @@ You can re-run it to regenerate `nitrate_clean`.
 At the end of that script we save the cleaned data into the package with:
 
 ```{r Reproducibility}
-# usethis::use_data(nitrate_clean, overwrite = TRUE)
+#| eval: false
+usethis::use_data(nitrate_clean, overwrite = TRUE)
 ```
 
 # Troubleshooting
@@ -207,8 +203,7 @@ At the end of that script we save the cleaned data into the package with:
 
 
 
-
-# Conclusion
+# Short summary
 
 This vignette shows basic use of the package.
 For more analysis, open the Shiny app and try different filters.

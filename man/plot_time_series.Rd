@@ -9,8 +9,7 @@ plot_time_series(
   sites = NULL,
   aggregation = "daily",
   start_date = NULL,
-  end_date = NULL,
-  show_ribbon = FALSE
+  end_date = NULL
 )
 }
 \arguments{
@@ -23,8 +22,6 @@ plot_time_series(
 \item{start_date}{Start date for the plot (Date object or string in "YYYY-MM-DD" format)}
 
 \item{end_date}{End date for the plot (Date object or string in "YYYY-MM-DD" format)}
-
-\item{show_ribbon}{Whether to show variability ribbon (default: FALSE)}
 }
 \value{
 A ggplot object showing time series of nitrate concentrations

@@ -7,7 +7,6 @@
 #' @param aggregation Level of temporal aggregation: "daily", "monthly" or "yearly"
 #' @param start_date Start date for the plot (Date object or string in "YYYY-MM-DD" format)
 #' @param end_date End date for the plot (Date object or string in "YYYY-MM-DD" format)
-#' @param show_ribbon Whether to show variability ribbon (default: FALSE)
 #'
 #'
 #' @returns A ggplot object showing time series of nitrate concentrations
@@ -17,7 +16,7 @@
 #' # Daily aggregated time series
 #' plot_time_series(nitrate_clean, aggregation = "daily")
 plot_time_series <- function(nitrate_data, sites = NULL, aggregation = "daily",
-                             start_date = NULL, end_date = NULL, show_ribbon = FALSE) {
+                             start_date = NULL, end_date = NULL) {
 
 
   if ("surfWaterNitrateMean" %in% names(nitrate_data)) {
@@ -144,19 +143,7 @@ plot_time_series <- function(nitrate_data, sites = NULL, aggregation = "daily",
       labels = scales::label_number(accuracy = 0.1)
     )
 
-  # Add ribbon for variability if requested and available
-  if (show_ribbon && exists("sd_var") && sd_var %in% names(plot_data)) {
-    p <- p +
-      ggplot2::geom_ribbon(ggplot2::aes(
-        ymin = .data[[y_var]] - .data[[sd_var]],
-        ymax = .data[[y_var]] + .data[[sd_var]],
-        fill = siteID
-      ), alpha = 0.2, color = NA, show.legend = FALSE) +
-      ggplot2::scale_fill_viridis_d(
-        option = "plasma",
-        end = 0.85
-      )
-  }
+
 
   return(p)
 }

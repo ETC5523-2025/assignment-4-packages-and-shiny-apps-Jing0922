@@ -1,4 +1,4 @@
-## Code to prepare 'nitrate_clean' dataset goes here
+## Code to prepare 'Nitrate-surface' dataset goes here
 
 library(neonUtilities)
 library(usethis)

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Explore and Visualize NEON Surface Water Nitrate Data • NitrateExplorer</title>
-<script src="lightswitch.js"></script><script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
@@ -18,7 +18,7 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
-    <nav class="navbar navbar-expand-lg fixed-top " aria-label="Site navigation"><div class="container">
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
 
     <a class="navbar-brand me-2" href="index.html">NitrateExplorer</a>
 
@@ -32,26 +32,13 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
-<li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="articles/nitrate_explorer_guide.html">Nitrate Explorer Guide</a></li>
-  </ul>
-</li>
+<li class="nav-item"><a class="nav-link" href="articles/index.html">Articles</a></li>
       </ul>
 <ul class="navbar-nav">
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
 </form></li>
-<li class="nav-item"><a class="nav-link" href="https://github.com/ETC5523-2025/assignment-4-packages-and-shiny-apps-Jing0922/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
-<li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-lightswitch" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-label="Light switch"><span class="fa fa-sun"></span></button>
-  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-lightswitch">
-<li><button class="dropdown-item" data-bs-theme-value="light"><span class="fa fa-sun"></span> Light</button></li>
-    <li><button class="dropdown-item" data-bs-theme-value="dark"><span class="fa fa-moon"></span> Dark</button></li>
-    <li><button class="dropdown-item" data-bs-theme-value="auto"><span class="fa fa-adjust"></span> Auto</button></li>
-  </ul>
-</li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/ETC5523-2025/assignment-4-packages-and-shiny-apps-Jing0922/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -60,8 +47,7 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="readme-nitrateexplorer">README: NitrateExplorer<a class="anchor" aria-label="anchor" href="#readme-nitrateexplorer"></a>
-</h1></div>
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 </div>
 <div class="section level1">
@@ -73,15 +59,15 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the package from <a href="https://github.com/ETC5523-2025/assignment-4-packages-and-shiny-apps-Jing0922">GitHub</a>. Run this in R:</p>
+<p>You can install the package from <a href="https://github.com/ETC5523-2025/assignment-4-packages-and-shiny-apps-Jing0922" class="external-link">GitHub</a>. Run this in R:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install remotes if you do not have it</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"remotes"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
 <span></span>
 <span></span>
-<span><span class="co"># install the package from GitHub (replace with your repo)</span></span>
+<span><span class="co"># install the package from GitHub</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"ETC5523-2025/assignment-4-packages-and-shiny-apps-Jing0922"</span><span class="op">)</span></span></code></pre></div>
-<p>You can install the development version of NitrateExplorer from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
+<p>You can install the development version of NitrateExplorer from <a href="https://github.com/ETC5523-2025/assignment-4-packages-and-shiny-apps-Jing0922" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
 <span><span class="fu">pak</span><span class="fu">::</span><span class="fu">pak</span><span class="op">(</span><span class="st">"ETC5523-2025/assignment-4-packages-and-shiny-apps-Jing0922"</span><span class="op">)</span></span></code></pre></div>
@@ -91,8 +77,9 @@
 </h2>
 <p>After install, run:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ETC5523-2025/assignment-4-packages-and-shiny-apps-Jing0922">NitrateExplorer</a></span><span class="op">)</span></span>
-<span><span class="co"># run_nitrate_app()</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ETC5523-2025/assignment-4-packages-and-shiny-apps-Jing0922" class="external-link">NitrateExplorer</a></span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/run_nitrate_app.html">run_nitrate_app</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>This will open the interactive app. The app lets you choose sites, dates, and plot types. It also allows download of filtered data and plots.</p>
 </div>
 <div class="section level2">
@@ -100,15 +87,15 @@
 </h2>
 <p>The package includes these main functions:</p>
 <ul>
-<li><p>run_app(): launch the Shiny app.</p></li>
-<li><p>calculate_daily_stats(data) — return daily summaries.</p></li>
-<li><p>calculate_monthly_stats(data) — return monthly summaries.</p></li>
-<li><p>calculate_yearly_stats(data) — return yearly summaries.</p></li>
-<li><p>plot_time_series(agg_data, sites, aggregation) — draw time series plot from aggregated data.</p></li>
-<li><p>boxplot_comparison(data, sites) — draw boxplots to compare sites.</p></li>
-<li><p>plot_distribution(data, sites, bin_size, show_density, facet_sites) — draw distribution plot.</p></li>
+<li><p><code>run_app()</code>: launch the Shiny app.</p></li>
+<li><p><code>calculate_daily_stats(data)</code> : return daily summaries.</p></li>
+<li><p><code>calculate_monthly_stats(data)</code> : return monthly summaries.</p></li>
+<li><p><code>calculate_yearly_stats(data)</code> : return yearly summaries.</p></li>
+<li><p><code>plot_time_series(agg_data, sites, aggregation)</code> : draw time series plot from aggregated data.</p></li>
+<li><p><code>boxplot_comparison(data, sites)</code> : draw boxplots to compare sites.</p></li>
+<li><p><code>plot_distribution(data, sites, bin_size, show_density, facet_sites)</code> : draw distribution plot.</p></li>
 </ul>
-<p>All functions are documented. See the man/ folder for details and examples.</p>
+<p>All functions are documented. See the <code>man/</code> folder for details and examples.</p>
 </div>
 <div class="section level2">
 <h2 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a>
@@ -118,8 +105,8 @@
 <ul>
 <li><p>siteID: ARIK, COMO, KING, LEWI, MAYF</p></li>
 <li><p>startDate: date of sample.</p></li>
-<li><p>surfWaterNitrateMean: nitrate concentration (mg/L).</p></li>
-<li><p>finalQF: quality flag (0 = pass).</p></li>
+<li><p>surfWaterNitrateMean: average nitrate concentration (mg/L).</p></li>
+<li><p>finalQF: quality flag (0 = pass, 1 = fail).</p></li>
 <li><p>n: number of measurements.</p></li>
 </ul>
 <p>The cleaning script is in data-raw/Nitrate-surface.R.</p>
@@ -127,14 +114,10 @@
 <div class="section level2">
 <h2 id="vignette-and-help">Vignette and help<a class="anchor" aria-label="anchor" href="#vignette-and-help"></a>
 </h2>
-<p>A vignette explains the main workflows. To view it, run:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/vignette.html" class="external-link">vignette</a></span><span class="op">(</span><span class="st">"nitrate_explorer_guide"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: vignette 'nitrate_explorer_guide' not found</span></span></code></pre></div>
+<p>A vignette explains the main workflows. View the full vignette on our documentation website: <a href="https://etc5523-2025.github.io/assignment-4-packages-and-shiny-apps-Jing0922/articles/nitrate_explorer_guide.html"><strong>Nitrate Explorer Guide</strong></a></p>
 <p>If you need more help, read the function help pages:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">?</span><span class="va">calculate_monthly_stats</span></span>
-<span><span class="co">#&gt; starting httpd help server ... done</span></span>
 <span><span class="op">?</span><span class="va">plot_time_series</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -156,14 +139,16 @@
 <div class="section level2">
 <h2 id="contact">Contact<a class="anchor" aria-label="anchor" href="#contact"></a>
 </h2>
-<p>For questions or support, please open an issue on GitHub or contact <a href="mailto:jwan0560@student.monash.edu" class="email">jwan0560@student.monash.edu</a>.</p>
+<p>For questions or support, please open an issue on <a href="https://github.com/ETC5523-2025/assignment-4-packages-and-shiny-apps-Jing0922" class="external-link">GitHub</a> or contact <a href="mailto:jwan0560@student.monash.edu" class="email">jwan0560@student.monash.edu</a>.</p>
 </div>
 </div>
 
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/ETC5523-2025/assignment-4-packages-and-shiny-apps-Jing0922/">Browse source code</a></li>
+<li><a href="https://github.com/ETC5523-2025/assignment-4-packages-and-shiny-apps-Jing0922/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/ETC5523-2025/assignment-4-packages-and-shiny-apps-Jing0922/issues" class="external-link">Report a bug</a></li>
+<li><a href="articles/nitrate_explorer_guide.html">Get Started</a></li>
 </ul>
 </div>
 
