@@ -38,6 +38,11 @@ with:
 pak::pak("ETC5523-2025/assignment-4-packages-and-shiny-apps-Jing0922")
 ```
 
+## Website
+
+A pkgdown website for this package is published at:
+<https://etc5523-2025.github.io/assignment-4-packages-and-shiny-apps-Jing0922/>
+
 ## Run the Shiny app
 
 After install, run:
@@ -92,8 +97,6 @@ Key fields:
 - surfWaterNitrateMean: average nitrate concentration (mg/L).
 
 - finalQF: quality flag (0 = pass, 1 = fail).
-
-- n: number of measurements.
 
 The cleaning script is in data-raw/Nitrate-surface.R.
 
